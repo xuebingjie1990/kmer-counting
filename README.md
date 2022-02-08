@@ -16,9 +16,9 @@ For the second task, use your `countKmers` function to count all 4-mers for each
 
 Bloom filters are membership testers that can be used to test whether a given k-mer is present in a large dataset. They are efficient in both memory and speed. For this task, you will implement a Bloom Filter for k-mers. You should be able to insert k-mers into the Bloom Filter as short strings, and then test the filter for presence. 
 
-Use the skeleton class provided in [bloomFilter.R](src/bloomFilter.R). The outline has been provided for you; you will need to implement 4 functions: `addElement`, `testElement`, `hashElement`, and `resetFilter`.
+Use the skeleton R class provided in [bloomFilter.R](src/bloomFilter.R). The outline has been provided for you; you will need to implement 4 methods on this class: `addElement`, `testElement`, `hashElement`, and `resetFilter`.
 
-To pass the tests, your Bloom Filter must score 100% accuracy on true positives (all inserted elements should return TRUE when tested for membership), and must achieve lower than 10% false positive accuracy when a non-inserted element is tested for presence under the test conditions.
+To test your work and see examples of how to use the class, consult [tests/testDriverBloom.R](tests/testDriverBloom.R). To pass the tests, your Bloom Filter must score 100% accuracy on true positives (all inserted elements should return TRUE when tested for membership), and must achieve lower than 10% false positive accuracy when a non-inserted element is tested for presence under the test conditions. If your hash functions are done well, theoretically, your bloom filter should be able to achieve 2% false positive rates under the conditions of the tests.
 
 ## Testing
 
