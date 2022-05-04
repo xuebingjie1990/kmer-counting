@@ -12,6 +12,10 @@ You should implement this function using only base R or tidyverse packages. In p
 
 For the second task, use your `countKmers` function to count all 4-mers for each of the sequences found in the [fasta](/fasta) folder. Build a matrix of 4-mer counts, with 1 row for each sequence and 1 column per 4-mer. Next, use PCA to reduce the dimensionality of the 4-mer matrix, and plot the first two principle components in a scatterplot using ggplot2.  (20 pts)
 
+**The code used to generate the PCA plot can be found [here](https://github.com/xuebingjie1990/kmer-counting/blob/master/src/task2.R).**
+
+![PCA](https://github.com/xuebingjie1990/kmer-counting/blob/master/fig/PCA_autoplot.png)
+
 ## Task 3: Construct a Bloom Filter to test for k-mer presence
 
 Bloom filters are membership testers that can be used to test whether a given k-mer is present in a large dataset. They are efficient in both memory and speed. For this task, you will implement a Bloom Filter for k-mers. You should be able to insert k-mers into the Bloom Filter as short strings, and then test the filter for presence. 
