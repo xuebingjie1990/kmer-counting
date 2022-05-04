@@ -1,4 +1,10 @@
-library(seqinr)
+library("seqinr")
+# library("ggfortify")
+library("plyr")
+library("plotly")
+library("ggplot2")
+
+setwd("~/Documents/Courses/BIMS8601/kmer-counting")
 source("src/countKmers.R")
 
 loadSeq = function(path) {
@@ -22,14 +28,24 @@ kmersCountMatrix = function(path){
       seq = seq[1]
       if (!(seqname %in% row.names(matrix))){
         counts = countKmers(seq, 4)
-        matrix = rbind(matrix, counts )
-        row.names(matrix)[length(row.names(matrix))] = seqname
+        rname = rownames(matrix)
+        matrix = rbind.fill(matrix, data.frame(as.list(counts)) )
+        rownames(matrix) = c(rname, seqname)
       }
     }
   }
+  matrix[is.na(matrix)] = 0
   return  (matrix) 
 }
 
 matrix = kmersCountMatrix("~/Documents/Courses/BIMS8601/kmer-counting/fasta/")
+pc <- prcomp(matrix,
+             center = TRUE,
+             scale. = TRUE)
 
+# p <- autoplot(pc)
+# ggplotly(p)
+
+p2 <- ggplot(pc, aes(x=PC1, y=PC2)) + geom_point()
+ggplotly(p2)
 

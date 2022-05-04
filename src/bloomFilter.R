@@ -18,18 +18,23 @@ BloomFilter$methods(
 	# @param element 	Element you want to add
 	addElement = function(element) {
 		# Hint: This function should call hashElement()
-
+	  idx = hashElement(element)
+	  .self$bfilt = replace(.self$bfilt , idx, TRUE)
 	},
 	# Tests a filter to see if it contains an element
 	#
 	# @param element 	Element you want to test
 	# @return bool		TRUE/FALSE indicating element exists
 	testElement = function(element) {
+	  idx = hashElement(element)
+	  states = unlist(lapply(idx, function(i) paste(.self$bfilt[i])))
+	  return (all(states == "TRUE"))
 	},
 
 	# Removes all elements from filter
 	resetFilter = function() {
 		# Hint: A bloom filter with no elements will be all 0s
+	  .self$bfilt = rep(FALSE, .self$size)
 	},
 
 	# Compute hash values for a given element
@@ -44,6 +49,10 @@ BloomFilter$methods(
 	# @return vector[numeric]	A vector of length `hashes` that
 	# 	with each value less than `size`.
 	hashElement = function(element, hashes=3) {
+	  .computeHashValues = function(i){
+	    return (abs(strtoi(digest2int(element, seed = i))) %% .self$size)
+	  }
+	  return (unlist(lapply(seq(hashes), .computeHashValues)))
 
 	},
 	# This function is used to print the object to screen
